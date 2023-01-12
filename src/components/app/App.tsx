@@ -4,6 +4,7 @@ import '../../App.css';
 import {Header} from "../header/Header";
 import {useAppDispatch} from "../../redux/store";
 import {getCardsTC} from "../../redux/cardsReducer";
+import {AppRoutes} from "./AppRoutes";
 
 function App() {
 
@@ -14,8 +15,9 @@ function App() {
     }, [])
 
     return (
-        <Box sx={{width: '1440px', height: '1408px'}}>
+        <Box sx={{width: '1440px'}}>
             <Header/>
+            <AppRoutes/>
         </Box>
     );
 }
