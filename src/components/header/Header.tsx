@@ -5,7 +5,7 @@ import {Cards} from "../card/Card";
 
 export const Header = () => {
     return (
-        <Box sx={{width: '1440px', height: '1408px'}}>
+        <Box>
             <Input/>
             <Cards/>
         </Box>

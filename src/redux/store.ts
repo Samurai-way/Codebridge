@@ -1,14 +1,21 @@
-import {combineReducers, legacy_createStore} from 'redux'
+import {applyMiddleware, combineReducers, legacy_createStore as createStore} from 'redux'
+import {TypedUseSelectorHook, useDispatch, useSelector} from 'react-redux'
+import thunk, {ThunkDispatch} from 'redux-thunk'
+import {cardsReducer} from "./cardsReducer";
 
-// объединяя reducer-ы с помощью combineReducers,
-// мы задаём структуру нашего единственного объекта-состояния
 const rootReducer = combineReducers({
-
+    cards: cardsReducer
 })
-// непосредственно создаём store
-export const store = legacy_createStore(rootReducer)
-// определить автоматически тип всего объекта состояния
-export type AppRootStateType = ReturnType<typeof rootReducer>
-// а это, чтобы можно было в консоли браузера обращаться к store в любой момент
+
+export const store = createStore(rootReducer, applyMiddleware(thunk))
+
+export type AppRootReducerType = ReturnType<typeof rootReducer>
+
+export type AppDispatch = ThunkDispatch<AppRootReducerType, unknown, any>
+
+export const useAppDispatch: () => AppDispatch = useDispatch
+export const useAppSelector: TypedUseSelectorHook<AppRootReducerType> = useSelector
+
+
 // @ts-ignore
-window.store = store
+window.store = store //for console view
