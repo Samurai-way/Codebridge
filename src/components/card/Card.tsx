@@ -1,6 +1,7 @@
 import {Box, Paper, Typography} from '@mui/material';
 import React from 'react';
 import {useAppSelector} from "../../redux/store";
+import {But} from "../button/Button";
 
 export const Cards = () => {
 
@@ -15,6 +16,7 @@ export const Cards = () => {
                     <Typography sx={{marginTop: '24px'}}>{e.publishedAt.slice(0, 10).split('-').reverse().join('.')}</Typography>
                     <Typography sx={{marginTop: '24px'}}>{e.title}</Typography>
                     <Typography sx={{marginTop: '24px'}}>{e.summary}</Typography>
+                    <But/>
                 </Paper>
             })}
         </Box>
