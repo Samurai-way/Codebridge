@@ -17,6 +17,7 @@ function App() {
     return (
         <Box sx={{width: '1440px'}}>
             <Header/>
+            {/*<ArticlePage/>*/}
             <AppRoutes/>
         </Box>
     );

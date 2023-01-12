@@ -1,7 +1,8 @@
 import {Box, Button, Paper, Typography} from '@mui/material';
 import React from 'react';
-import {useAppSelector} from "../../redux/store";
+import {useAppDispatch, useAppSelector} from "../../redux/store";
 import img from "../../assets/Arrow - Right.png";
+import {getCardTC} from "../../redux/cardsReducer";
 
 const styleTypography = {
     marginTop: '24px',
@@ -19,9 +20,11 @@ const styleBox = {
 }
 
 export const Cards = () => {
-
+    const dispatch = useAppDispatch()
     const cards = useAppSelector(state => state.cards.cards)
-
+    const onCLickHandler = (id: number) => {
+        dispatch(getCardTC(id))
+    }
 
     return (
         <Box sx={styleBox}>
@@ -32,7 +35,8 @@ export const Cards = () => {
                         sx={styleTypography}>{e.publishedAt.slice(0, 10).split('-').reverse().join('.')}</Typography>
                     <Typography sx={styleTypography}>{e.title}</Typography>
                     <Typography sx={styleTypography}>{e.summary}</Typography>
-                    <Button sx={{color: 'black', marginTop: '20px', marginLeft: '20px'}}>
+                    <Button sx={{color: 'black', marginTop: '20px', marginLeft: '20px'}}
+                            onClick={() =>onCLickHandler(e.id)}>
                         Read more
                         <img style={{marginLeft: '5px'}} src={img}/>
                     </Button>
