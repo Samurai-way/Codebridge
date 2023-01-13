@@ -1,8 +1,10 @@
 import React from 'react';
 import {Navigate, Route, Routes} from "react-router-dom";
+import {ArticlePage} from "../article/ArticlePage";
+import {Header} from "../header/Header";
 
 export enum Path {
-    homepage = '/homepage',
+    homepage = '/',
     articlePage = '/articlePage'
 }
 
@@ -10,8 +12,9 @@ export enum Path {
 export const AppRoutes = () => {
     return (
         <Routes>
-            <Route path={Path.homepage} element={<Navigate to={Path.homepage}/>}/>
-            <Route path={Path.articlePage + '/:id'} element={<Navigate to={Path.articlePage}/>}/>
+            <Route path={Path.homepage} element={<Header/>}/>
+            <Route path={Path.articlePage + '/:id'} element={<ArticlePage/>}/>
+            {/*<Route path={Path.other} element={<div>error</div>}/>*/}
         </Routes>
     );
 };

@@ -1,8 +1,8 @@
 import {Box, Button, Paper, Typography} from '@mui/material';
 import React from 'react';
-import {useAppDispatch, useAppSelector} from "../../redux/store";
+import {useAppSelector} from "../../redux/store";
 import img from "../../assets/Arrow - Right.png";
-import {getCardTC} from "../../redux/cardsReducer";
+import {useNavigate} from "react-router-dom";
 
 const styleTypography = {
     marginTop: '24px',
@@ -20,16 +20,16 @@ const styleBox = {
 }
 
 export const Cards = () => {
-    const dispatch = useAppDispatch()
+    const navigate = useNavigate()
     const cards = useAppSelector(state => state.cards.cards)
     const onCLickHandler = (id: number) => {
-        dispatch(getCardTC(id))
+        navigate(`articlePage/` + id)
     }
-
+    console.log(Array.isArray(cards))
     return (
         <Box sx={styleBox}>
             {cards.map(e => {
-                return <Paper elevation={3} sx={{maxWidth: '400px'}}>
+                return <Paper key={e.id} elevation={3} sx={{maxWidth: '400px'}}>
                     <img style={{width: '400px', height: '217px'}} src={e.imageUrl}/>
                     <Typography
                         sx={styleTypography}>{e.publishedAt.slice(0, 10).split('-').reverse().join('.')}</Typography>

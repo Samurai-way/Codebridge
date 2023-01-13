@@ -1,4 +1,4 @@
-import {CardObject} from "../api/types";
+import {CardObject, CardType} from "../api/types";
 import {AppDispatch} from "./store";
 import {cardsApi} from "../api/cardsApi";
 
@@ -18,7 +18,7 @@ type InitialStateType = typeof initialState
 
 const initialState = {
     cards: [] as CardObject,
-    card: [] as CardObject
+    card: {} as CardType
 }
 
 export const cardsReducer = (state: InitialStateType = initialState, action: CardsActionsType): InitialStateType => {
@@ -47,7 +47,7 @@ export const getCardsAC = (cards: CardObject) => {
     } as const
 }
 
-export const getCardAC = (card: CardObject) => {
+export const getCardAC = (card: CardType) => {
     return {
         type: 'GET/CARD',
         card
@@ -63,7 +63,7 @@ export const getCardsTC = () => async (dispatch: AppDispatch) => {
     }
 }
 
-export const getCardTC = (id: number) => async (dispatch: AppDispatch) => {
+export const getCardTC = (id: string) => async (dispatch: AppDispatch) => {
     try {
         const res = await cardsApi.getCard(id)
         dispatch(getCardAC(res.data))

@@ -5,7 +5,7 @@ export const cardsApi = {
         return instance
             .get('?_limit=6')
     },
-    getCard(id: number){
+    getCard(id: string){
         return instance.get(`${id}`,)
     }
 }
