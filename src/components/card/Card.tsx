@@ -25,7 +25,6 @@ export const Cards = () => {
     const onCLickHandler = (id: number) => {
         navigate(`articlePage/` + id)
     }
-    console.log(Array.isArray(cards))
     return (
         <Box sx={styleBox}>
             {cards.map(e => {

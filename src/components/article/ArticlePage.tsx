@@ -10,7 +10,6 @@ export const ArticlePage = () => {
     const navigate = useNavigate()
     const dispatch = useAppDispatch()
     const card = useAppSelector(state => state.cards.card)
-    console.log(card)
     useEffect(() => {
         id && dispatch(getCardTC(id))
     }, [])
